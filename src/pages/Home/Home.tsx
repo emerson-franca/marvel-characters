@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import MD5 from "crypto-js/md5";
 import { Character, CharacterResponse } from "./types";
 import { Card } from "../../components";
+import Logo from "../../assets/logo.svg";
+import "./Home.css";
 
 export const Home = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -36,10 +38,23 @@ export const Home = () => {
   }, []);
 
   return (
-    <div>
-      {characters.map((character) => (
-        <Card key={character.id} {...character} />
-      ))}
+    <div className="home">
+      <section className="home__header">
+        <img src={Logo} alt="marvel logo" />
+        <h1>EXPLORE O UNIVERSO</h1>
+        <h6>
+          Mergulhe no domínio deslumbrante de todos os personagens clássicos que
+          você ama - e aqueles que você descobrirá em breve!
+        </h6>
+      </section>
+
+      <section className="home__content">
+        <div className="home__content__grid">
+          {characters.map((character) => (
+            <Card key={character.id} {...character} />
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
