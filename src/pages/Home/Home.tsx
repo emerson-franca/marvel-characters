@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import MD5 from "crypto-js/md5";
+import { Character, CharacterResponse } from "./types";
+import { Card } from "../../components";
 
 export const Home = () => {
-  const [characters, setCharacters] = useState([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
   const ts = new Date().getTime().toString();
   const hash = MD5(
     ts + process.env.REACT_APP_PRIVATE_KEY + process.env.REACT_APP_PUBLIC_KEY
@@ -12,7 +14,7 @@ export const Home = () => {
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
-        const response = await axios.get(
+        const response = await axios.get<CharacterResponse>(
           `https://gateway.marvel.com:443/v1/public/characters`,
           {
             params: {
@@ -30,7 +32,14 @@ export const Home = () => {
     };
 
     fetchCharacters();
-  }, [hash, ts]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  return <div>Home</div>;
+  return (
+    <div>
+      {characters.map((character) => (
+        <Card key={character.id} {...character} />
+      ))}
+    </div>
+  );
 };
