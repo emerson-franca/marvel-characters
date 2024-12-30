@@ -1,0 +1,27 @@
+.search {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search__container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15%;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+.search__input {
+  background-color: transparent;
+  border: none;
+  color: var(--color-primary);
+  &::placeholder {
+    color: var(--color-primary);
+  }
+  font-size: 1em;
+  outline: none;
+}
