@@ -3,8 +3,14 @@ import Logo from "../../assets/logo.svg";
 import "./Home.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { useMarvelCharacters } from "../../hooks/";
+import { useState } from "react";
+import { ReactComponent as ToggleOn } from "./assets/toggle_on.svg";
+import { ReactComponent as ToggleOff } from "./assets/toggle_off.svg";
+import { ReactComponent as FavoriteOn } from "../../assets/favorito_01.svg";
+import { ReactComponent as HeroIcon } from "../../assets/ic_heroi.svg";
 
 export const Home = () => {
+  const [order, setOrder] = useState(false);
   const { characters, handleSearch, isLoading } = useMarvelCharacters();
 
   return (
@@ -26,6 +32,27 @@ export const Home = () => {
             <span className="home__loading"></span>
           </div>
         )}
+
+        <div className="home__content__info">
+          <p>Encontrados {characters.length} heróis</p>
+
+          <div className="home__content__filters">
+            <div className="home__content__filters__wrapper">
+              <HeroIcon />
+              <span>Ordenar por nome - A/Z</span>
+              {order ? (
+                <ToggleOn onClick={() => setOrder(!order)} />
+              ) : (
+                <ToggleOff onClick={() => setOrder(!order)} />
+              )}
+            </div>
+
+            <div className="home__content__filters__wrapper">
+              <p>Somente favoritos</p>
+              <FavoriteOn />
+            </div>
+          </div>
+        </div>
 
         <div className="home__content__grid">
           {characters.map((character) => (

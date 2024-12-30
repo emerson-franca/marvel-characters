@@ -50,3 +50,25 @@
     transform: rotate(360deg);
   }
 }
+
+.home__content__info {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  color: var(--text-secondary);
+}
+
+.home__content__filters {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  color: var(--color-primary);
+}
+
+.home__content__filters__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
