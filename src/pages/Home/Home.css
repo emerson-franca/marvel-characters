@@ -1,3 +1,8 @@
+.home {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .home__header {
   display: flex;
   flex-direction: column;
@@ -13,7 +18,7 @@
 
 .home__header h6 {
   font-weight: bold;
-  color: grey;
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -21,4 +26,27 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
+}
+
+.home__loading__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.home__loading {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #3498db;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

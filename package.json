@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tanstack/react-query": "^5.62.11",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.2",
     "@types/react-dom": "^19.0.2",
+    "@types/react-query": "^1.2.9",
     "axios": "^1.7.9",
     "cra-template-typescript": "1.2.0",
     "crypto-js": "^4.2.0",
