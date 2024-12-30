@@ -1,0 +1,16 @@
+.card__title {
+  font-size: 1em;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.card__image {
+  max-width: 100%;
+  border-bottom: 4px solid red;
+}
+
+.card__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
