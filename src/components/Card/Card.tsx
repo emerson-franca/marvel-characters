@@ -1,7 +1,7 @@
-import { Character } from "@/pages/Home/types";
 import { FC } from "react";
 import { ReactComponent as FavoriteIcon } from "./assets/favorito_02.svg";
 import "./Card.css";
+import { Character } from "@/types/character";
 
 export const Card: FC<Character> = ({ id, name, thumbnail }) => {
   return (
