@@ -30,10 +30,8 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
       className="search"
       onSubmit={handleSubmit}
     >
-      <img src={SearchBarRed} alt="searchBar" />
       <div className="search__container">
         <SearchIcon className="search__icon" />
-
         <input
           ref={inputRef}
           type="text"

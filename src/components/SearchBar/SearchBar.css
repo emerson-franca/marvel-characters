@@ -1,22 +1,23 @@
 .search {
-  position: relative;
   display: flex;
   justify-content: center;
   cursor: pointer;
+  margin: 20px;
 }
 
 .search__container {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 15%;
   display: flex;
   align-items: center;
   gap: 2em;
+  width: 100%;
+  max-width: 850px;
+  padding: 20px;
+  border-radius: 40px;
+  background-color: var(--color-secondary);
 }
 
 .search__input {
-  background-color: transparent;
+  background-color: var(--color-secondary);
   border: none;
   color: var(--color-primary);
   &::placeholder {
