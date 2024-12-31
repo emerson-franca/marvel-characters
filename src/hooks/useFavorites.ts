@@ -16,6 +16,11 @@ export const useFavorites = () => {
 
   const toggleFavoriteMutation = useMutation<number[], unknown, number>({
     mutationFn: async (characterId: number) => {
+      if (!favorites.includes(characterId) && favorites.length === 5) {
+        alert("Você já tem 5 favoritos!");
+        return favorites;
+      }
+
       const updatedFavorites = favorites.includes(characterId)
         ? favorites.filter((id) => id !== characterId)
         : [...favorites, characterId];
