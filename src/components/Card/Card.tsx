@@ -21,9 +21,12 @@ export const Card: FC<CardProps> = ({ id, name, thumbnail, favorite }) => {
       />
       <div className="card__content">
         <h1 className="card__title">{name}</h1>
-        <div onClick={() => toggleFavorite(id)}>
+        <button
+          className="card__content__favorite"
+          onClick={() => toggleFavorite(id)}
+        >
           {favorite ? <FavoriteOn /> : <FavoriteOff />}
-        </div>
+        </button>
       </div>
     </div>
   );
