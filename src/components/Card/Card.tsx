@@ -1,9 +1,17 @@
 import { FC } from "react";
-import { ReactComponent as FavoriteIcon } from "./assets/favorito_02.svg";
+import { ReactComponent as FavoriteOff } from "../../assets/favorito_02.svg";
+import { ReactComponent as FavoriteOn } from "../../assets/favorito_01.svg";
 import "./Card.css";
 import { Character } from "@/types/character";
+import { useFavorites } from "../../hooks";
 
-export const Card: FC<Character> = ({ id, name, thumbnail }) => {
+type CardProps = {
+  favorite?: boolean;
+} & Character;
+
+export const Card: FC<CardProps> = ({ id, name, thumbnail, favorite }) => {
+  const { toggleFavorite } = useFavorites();
+
   return (
     <div className="card" key={id}>
       <img
@@ -13,7 +21,9 @@ export const Card: FC<Character> = ({ id, name, thumbnail }) => {
       />
       <div className="card__content">
         <h1 className="card__title">{name}</h1>
-        <FavoriteIcon />
+        <div onClick={() => toggleFavorite(id)}>
+          {favorite ? <FavoriteOn /> : <FavoriteOff />}
+        </div>
       </div>
     </div>
   );
