@@ -16,7 +16,8 @@ const hash = MD5(ts + PRIVATE_KEY + PUBLIC_KEY).toString();
 const fetchMarvelCharacters = async (
   searchQuery: string,
   limit: number,
-  offset: number
+  offset: number,
+  orderBy: string
 ): Promise<CharactersApiResponse> => {
   const response = await axios.get<CharactersApiResponse>(
     "https://gateway.marvel.com:443/v1/public/characters",
@@ -28,6 +29,7 @@ const fetchMarvelCharacters = async (
         limit,
         offset,
         ...(searchQuery && { nameStartsWith: searchQuery }),
+        ...(orderBy && { orderBy }),
       },
     }
   );
@@ -43,6 +45,7 @@ export const useMarvelCharacters = (): UseMarvelCharactersReturn => {
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
   const [totalCharacters, setTotalCharacters] = useState(0);
+  const [orderBy, setOrderBy] = useState<"name" | "-name">("name");
 
   const limit = 20;
   const offset = (page - 1) * limit;
@@ -52,9 +55,14 @@ export const useMarvelCharacters = (): UseMarvelCharactersReturn => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["characters", searchQuery, page],
+    queryKey: ["characters", searchQuery, page, orderBy],
     queryFn: async () => {
-      const { data } = await fetchMarvelCharacters(searchQuery, limit, offset);
+      const { data } = await fetchMarvelCharacters(
+        searchQuery,
+        limit,
+        offset,
+        orderBy
+      );
       setTotalCharacters(data.total);
       return data.results;
     },
@@ -72,6 +80,11 @@ export const useMarvelCharacters = (): UseMarvelCharactersReturn => {
     setPage(newPage);
   };
 
+  const handleOrderChange = (newOrderBy: "name" | "-name") => {
+    setOrderBy(newOrderBy);
+    setPage(1);
+  };
+
   const totalPages = Math.ceil(totalCharacters / limit);
 
   return {
@@ -82,5 +95,7 @@ export const useMarvelCharacters = (): UseMarvelCharactersReturn => {
     handlePageChange,
     page,
     totalPages,
+    handleOrderChange,
+    orderBy,
   };
 };

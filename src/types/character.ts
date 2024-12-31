@@ -17,6 +17,8 @@ export type UseMarvelCharactersReturn = {
   handlePageChange: (newPage: number) => void;
   page: number;
   totalPages: number;
+  handleOrderChange: (newOrderBy: "name" | "-name") => void;
+  orderBy: "name" | "-name";
 };
 
 export type CharactersApiResponse = {

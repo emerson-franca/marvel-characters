@@ -72,3 +72,16 @@
   align-items: center;
   gap: 20px;
 }
+
+.home__content__filters__wrapper__favorite {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-circle {
+  transition: transform 0.3s ease, fill 0.3s ease;
+}

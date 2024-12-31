@@ -1,17 +1,16 @@
-import { Card, Pagination } from "../../components";
+import { Card, Pagination, Toggle } from "../../components";
 import Logo from "../../assets/logo.svg";
 import "./Home.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { useMarvelCharacters, useFavorites } from "../../hooks/";
 import { useState } from "react";
-import { ReactComponent as ToggleOn } from "./assets/toggle_on.svg";
-import { ReactComponent as ToggleOff } from "./assets/toggle_off.svg";
 import { ReactComponent as FavoriteOn } from "../../assets/favorito_01.svg";
+import { ReactComponent as FavoriteOff } from "../../assets/favorito_02.svg";
 import { ReactComponent as HeroIcon } from "../../assets/ic_heroi.svg";
 
 export const Home = () => {
-  const { isFavorite, favorites } = useFavorites();
-  const [order, setOrder] = useState(false);
+  const { isFavorite } = useFavorites();
+  const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
 
   const {
     characters,
@@ -20,7 +19,17 @@ export const Home = () => {
     handlePageChange,
     page,
     totalPages,
+    handleOrderChange,
+    orderBy,
   } = useMarvelCharacters();
+
+  const handleFavorites = () => {
+    setShowOnlyFavorites(!showOnlyFavorites);
+  };
+
+  const filteredCharacters = showOnlyFavorites
+    ? characters.filter((char) => isFavorite(char.id))
+    : characters;
 
   return (
     <div className="home">
@@ -49,22 +58,33 @@ export const Home = () => {
                 <div className="home__content__filters__wrapper">
                   <HeroIcon />
                   <span>Ordenar por nome - A/Z</span>
-                  {order ? (
-                    <ToggleOn onClick={() => setOrder(!order)} />
+                  {orderBy === "name" ? (
+                    <Toggle isOn onClick={() => handleOrderChange("-name")} />
                   ) : (
-                    <ToggleOff onClick={() => setOrder(!order)} />
+                    <Toggle
+                      isOn={false}
+                      onClick={() => handleOrderChange("name")}
+                    />
                   )}
                 </div>
 
                 <div className="home__content__filters__wrapper">
                   <p>Somente favoritos</p>
-                  <FavoriteOn />
+                  {showOnlyFavorites ? (
+                    <button className="home__content__filters__wrapper__favorite">
+                      <FavoriteOn onClick={handleFavorites} />
+                    </button>
+                  ) : (
+                    <button className="home__content__filters__wrapper__favorite">
+                      <FavoriteOff onClick={handleFavorites} />
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
 
             <div className="home__content__grid">
-              {characters.map((character) => (
+              {filteredCharacters.map((character) => (
                 <Card
                   key={character.id}
                   {...character}
