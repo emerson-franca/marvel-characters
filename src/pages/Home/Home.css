@@ -1,6 +1,7 @@
 .home {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 .home__header {
@@ -20,6 +21,11 @@
   font-weight: bold;
   color: var(--text-secondary);
   margin: 0;
+  padding: 0 20px;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 }
 
 .home__content__grid {
@@ -58,6 +64,11 @@
   align-items: center;
   margin-bottom: 20px;
   color: var(--text-secondary);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 .home__content__filters {
@@ -65,6 +76,11 @@
   gap: 20px;
   align-items: center;
   color: var(--color-primary);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 .home__content__filters__wrapper {

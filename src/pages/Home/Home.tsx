@@ -1,4 +1,4 @@
-import { Card, Pagination, Toggle } from "../../components";
+import { Card, Footer, Pagination, Toggle } from "../../components";
 import Logo from "../../assets/logo.svg";
 import "./Home.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -100,6 +100,7 @@ export const Home = () => {
           </>
         )}
       </section>
+      <Footer />
     </div>
   );
 };
