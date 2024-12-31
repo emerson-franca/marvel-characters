@@ -24,14 +24,14 @@ export const Pagination = ({
   return (
     <div className="pagination">
       <button onClick={() => onPageChange(1)} disabled={currentPage === 1}>
-        Primeira
+        {"<<"}
       </button>
 
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
-        Anterior
+        {"<"}
       </button>
 
       {pages.map((page) => (
@@ -48,7 +48,7 @@ export const Pagination = ({
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
-        Próxima
+        {">"}
       </button>
 
       <button

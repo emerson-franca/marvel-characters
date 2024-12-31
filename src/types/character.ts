@@ -1,4 +1,5 @@
 export type Character = {
+  favorite?: boolean;
   id: number;
   name: string;
   description: string;
@@ -13,10 +14,14 @@ export type UseMarvelCharactersReturn = {
   isLoading: boolean;
   error: Error | null;
   handleSearch: (query: string) => void;
+  handlePageChange: (newPage: number) => void;
+  page: number;
+  totalPages: number;
 };
 
 export type CharactersApiResponse = {
   data: {
     results: Character[];
+    total: number;
   };
 };
