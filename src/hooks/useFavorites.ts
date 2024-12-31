@@ -1,10 +1,12 @@
+import { Character } from "../types/character";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 const FAVORITES_KEY = "marvel_favorites";
 
 export const useFavorites = () => {
   const queryClient = useQueryClient();
-  const { data: favorites = [] } = useQuery<number[]>({
+
+  const { data: favorites = [] } = useQuery<Character[]>({
     queryKey: [FAVORITES_KEY],
     queryFn: () => {
       const savedFavorites = localStorage.getItem(FAVORITES_KEY);
@@ -14,16 +16,20 @@ export const useFavorites = () => {
     gcTime: Infinity,
   });
 
-  const toggleFavoriteMutation = useMutation<number[], unknown, number>({
-    mutationFn: async (characterId: number) => {
-      if (!favorites.includes(characterId) && favorites.length === 5) {
+  const toggleFavoriteMutation = useMutation<Character[], unknown, Character>({
+    mutationFn: async (character: Character) => {
+      const isAlreadyFavorite = favorites.some(
+        (fav) => fav.id === character.id
+      );
+
+      if (!isAlreadyFavorite && favorites.length === 5) {
         alert("Você já tem 5 favoritos!");
         return favorites;
       }
 
-      const updatedFavorites = favorites.includes(characterId)
-        ? favorites.filter((id) => id !== characterId)
-        : [...favorites, characterId];
+      const updatedFavorites = isAlreadyFavorite
+        ? favorites.filter((fav) => fav.id !== character.id)
+        : [...favorites, character];
 
       localStorage.setItem(FAVORITES_KEY, JSON.stringify(updatedFavorites));
       return updatedFavorites;
@@ -33,11 +39,12 @@ export const useFavorites = () => {
     },
   });
 
-  const toggleFavorite = (characterId: number) => {
-    toggleFavoriteMutation.mutate(characterId);
+  const toggleFavorite = (character: Character) => {
+    toggleFavoriteMutation.mutate(character);
   };
 
-  const isFavorite = (characterId: number) => favorites.includes(characterId);
+  const isFavorite = (characterId: number) =>
+    favorites.some((fav) => fav.id === characterId);
 
   return {
     favorites,

@@ -9,7 +9,7 @@ import { ReactComponent as FavoriteOff } from "../../assets/favorito_02.svg";
 import { ReactComponent as HeroIcon } from "../../assets/ic_heroi.svg";
 
 export const Home = () => {
-  const { isFavorite } = useFavorites();
+  const { isFavorite, favorites } = useFavorites();
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
 
   const {
@@ -27,9 +27,7 @@ export const Home = () => {
     setShowOnlyFavorites(!showOnlyFavorites);
   };
 
-  const filteredCharacters = showOnlyFavorites
-    ? characters.filter((char) => isFavorite(char.id))
-    : characters;
+  const filteredCharacters = showOnlyFavorites ? favorites : characters;
 
   return (
     <div className="home">
@@ -52,7 +50,11 @@ export const Home = () => {
         ) : (
           <>
             <div className="home__content__info">
-              <p>Encontrados {characters.length} heróis</p>
+              <p>
+                Encontrados{" "}
+                {showOnlyFavorites ? favorites.length : characters.length}{" "}
+                heróis
+              </p>
 
               <div className="home__content__filters">
                 <div className="home__content__filters__wrapper">
@@ -92,11 +94,14 @@ export const Home = () => {
                 />
               ))}
             </div>
-            <Pagination
-              currentPage={page}
-              onPageChange={handlePageChange}
-              totalPages={totalPages}
-            />
+
+            {!showOnlyFavorites && (
+              <Pagination
+                currentPage={page}
+                onPageChange={handlePageChange}
+                totalPages={totalPages}
+              />
+            )}
           </>
         )}
       </section>

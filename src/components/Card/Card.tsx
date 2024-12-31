@@ -9,7 +9,8 @@ type CardProps = {
   favorite?: boolean;
 } & Character;
 
-export const Card: FC<CardProps> = ({ id, name, thumbnail, favorite }) => {
+export const Card: FC<CardProps> = (character) => {
+  const { id, name, thumbnail, favorite } = character;
   const { toggleFavorite } = useFavorites();
 
   return (
@@ -23,7 +24,7 @@ export const Card: FC<CardProps> = ({ id, name, thumbnail, favorite }) => {
         <h1 className="card__title">{name}</h1>
         <button
           className="card__content__favorite"
-          onClick={() => toggleFavorite(id)}
+          onClick={() => toggleFavorite(character)}
         >
           {favorite ? <FavoriteOn /> : <FavoriteOff />}
         </button>
