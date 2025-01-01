@@ -1,45 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { MD5 } from "crypto-js";
-import {
-  CharactersApiResponse,
-  UseMarvelCharactersReturn,
-} from "@/types/character";
-import axios from "axios";
-
-const PUBLIC_KEY = process.env.REACT_APP_PUBLIC_KEY || "";
-const PRIVATE_KEY = process.env.REACT_APP_PRIVATE_KEY || "";
-
-const ts = new Date().getTime().toString();
-const hash = MD5(ts + PRIVATE_KEY + PUBLIC_KEY).toString();
-
-const fetchMarvelCharacters = async (
-  searchQuery: string,
-  limit: number,
-  offset: number,
-  orderBy: string
-): Promise<CharactersApiResponse> => {
-  const response = await axios.get<CharactersApiResponse>(
-    "https://gateway.marvel.com:443/v1/public/characters",
-    {
-      params: {
-        ts,
-        apikey: process.env.REACT_APP_PUBLIC_KEY,
-        hash,
-        limit,
-        offset,
-        ...(searchQuery && { nameStartsWith: searchQuery }),
-        ...(orderBy && { orderBy }),
-      },
-    }
-  );
-
-  if (response.status !== 200) {
-    throw new Error("Erro ao buscar personagens");
-  }
-
-  return response.data;
-};
+import { UseMarvelCharactersReturn } from "@/types/character";
+import { fetchMarvelCharacters } from "../api/characters";
 
 export const useMarvelCharacters = (): UseMarvelCharactersReturn => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -57,12 +19,12 @@ export const useMarvelCharacters = (): UseMarvelCharactersReturn => {
   } = useQuery({
     queryKey: ["characters", searchQuery, page, orderBy],
     queryFn: async () => {
-      const { data } = await fetchMarvelCharacters(
+      const { data } = await fetchMarvelCharacters({
         searchQuery,
         limit,
         offset,
-        orderBy
-      );
+        orderBy,
+      });
       setTotalCharacters(data.total);
       return data.results;
     },
