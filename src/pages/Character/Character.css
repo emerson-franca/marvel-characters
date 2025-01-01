@@ -1,0 +1,7 @@
+.character__header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
