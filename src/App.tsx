@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "./styles/common.css";
 import "./styles/variables.css";
 import AppRouter from "./AppRouter";
 
