@@ -10,14 +10,22 @@
   align-items: center;
   gap: 2em;
   width: 100%;
+  border-radius: 40px;
+}
+
+.search__container--default {
   max-width: 850px;
   padding: 20px;
-  border-radius: 40px;
   background-color: var(--color-secondary);
 }
 
+.search__container--small {
+  max-width: 500px;
+  padding: 10px;
+  background-color: #fff;
+}
+
 .search__input {
-  background-color: var(--color-secondary);
   border: none;
   color: var(--color-primary);
   &::placeholder {
@@ -25,4 +33,8 @@
   }
   font-size: 1em;
   outline: none;
+}
+
+.search__input--default {
+  background-color: var(--color-secondary);
 }

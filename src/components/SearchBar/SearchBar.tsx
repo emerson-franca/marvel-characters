@@ -1,13 +1,14 @@
 import { createRef, FC, useState } from "react";
-import SearchBarRed from "./assets/search_bar_vermelho.svg";
 import { ReactComponent as SearchIcon } from "./assets/ic_busca.svg";
+import { ReactComponent as SearchIconSmall } from "./assets/ic_busca_menor.svg";
 import "./SearchBar.css";
 
 interface SearchBarProps {
+  variant?: "default" | "small";
   onSearch: (query: string) => void;
 }
 
-const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
+const SearchBar: FC<SearchBarProps> = ({ onSearch, variant }) => {
   const [inputValue, setInputValue] = useState("");
   const inputRef = createRef<HTMLInputElement>();
 
@@ -30,12 +31,27 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
       className="search"
       onSubmit={handleSubmit}
     >
-      <div className="search__container">
-        <SearchIcon className="search__icon" />
+      <div
+        className={
+          variant === "small"
+            ? "search__container search__container--small"
+            : "search__container search__container--default"
+        }
+      >
+        {variant === "small" ? (
+          <SearchIconSmall className="search__icon" />
+        ) : (
+          <SearchIcon className="search__icon" />
+        )}
+
         <input
           ref={inputRef}
           type="text"
-          className="search__input"
+          className={
+            variant === "small"
+              ? "search__input search__input--small"
+              : "search__input search__input--default"
+          }
           placeholder="Procure por heróis"
           value={inputValue}
           onChange={handleChange}
