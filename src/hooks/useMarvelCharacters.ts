@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { UseMarvelCharactersReturn } from "@/types/character";
+import { UseMarvelCharactersReturn } from "../types/character";
 import { fetchMarvelCharacters } from "../api/characters";
 
 export const useMarvelCharacters = (): UseMarvelCharactersReturn => {
