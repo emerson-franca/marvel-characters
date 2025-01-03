@@ -30,6 +30,10 @@ export const Home = () => {
     searchFn(query);
   };
 
+  const handleOrderToggle = () => {
+    handleOrderChange(orderBy === "name" ? "-name" : "name");
+  };
+
   const filteredCharacters = showOnlyFavorites ? favorites : characters;
 
   return (
@@ -56,14 +60,7 @@ export const Home = () => {
             <div className="home__content__filters__wrapper">
               <HeroIcon />
               <span>Ordenar por nome - A/Z</span>
-              {orderBy === "name" ? (
-                <Toggle isOn onClick={() => handleOrderChange("-name")} />
-              ) : (
-                <Toggle
-                  isOn={false}
-                  onClick={() => handleOrderChange("name")}
-                />
-              )}
+              <Toggle isOn={orderBy === "name"} onClick={handleOrderToggle} />
             </div>
 
             <div className="home__content__filters__wrapper">

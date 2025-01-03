@@ -6,6 +6,7 @@ export const Toggle = ({
   onClick: () => void;
 }) => (
   <svg
+    data-testid="order-toggle"
     role="presentation"
     width="75px"
     height="41px"
