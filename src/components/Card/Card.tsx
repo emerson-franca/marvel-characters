@@ -8,10 +8,11 @@ import { useNavigate } from "react-router-dom";
 
 type CardProps = {
   favorite?: boolean;
-} & Character;
+  character: Character;
+};
 
-export const Card: FC<CardProps> = (character) => {
-  const { id, name, thumbnail, favorite } = character;
+export const Card: FC<CardProps> = ({ character, favorite }) => {
+  const { id, name, thumbnail } = character;
   const { toggleFavorite } = useFavorites();
   const navigate = useNavigate();
 
@@ -25,7 +26,7 @@ export const Card: FC<CardProps> = (character) => {
   };
 
   return (
-    <div className="card" key={id} onClick={handleCardClick}>
+    <div className="card" onClick={handleCardClick}>
       <img
         className="card__image"
         src={`${thumbnail.path}.${thumbnail.extension}`}
@@ -37,7 +38,11 @@ export const Card: FC<CardProps> = (character) => {
           className="card__content__favorite"
           onClick={handleFavoriteClick}
         >
-          {favorite ? <FavoriteOn /> : <FavoriteOff />}
+          {favorite ? (
+            <FavoriteOn data-testid="favorite-on" />
+          ) : (
+            <FavoriteOff data-testid="favorite-off" />
+          )}
         </button>
       </div>
     </div>
