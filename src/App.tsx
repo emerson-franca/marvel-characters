@@ -1,22 +1,13 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./styles/common.css";
 import "./styles/variables.css";
-import AppRouter from "./AppRouter";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000,
-      gcTime: 60 * 60 * 1000,
-    },
-  },
-});
+import AppRouter from "./route/AppRouter";
+import { ReactQueryWrapper } from "./config/ReactQuery";
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <ReactQueryWrapper>
       <AppRouter />
-    </QueryClientProvider>
+    </ReactQueryWrapper>
   );
 }
 
