@@ -6,6 +6,7 @@ export const Toggle = ({
   onClick: () => void;
 }) => (
   <svg
+    role="presentation"
     width="75px"
     height="41px"
     viewBox="0 0 75 41"
@@ -46,7 +47,8 @@ export const Toggle = ({
     <g id="toggle" fill="none" fillRule="evenodd">
       <rect fill="#E4E5E9" x="0" y="0" width="75" height="39" rx="19.5"></rect>
       <g
-        id="Oval"
+        data-testid="circle"
+        id="Circle"
         className="toggle-circle"
         transform={isOn ? "translate(-40, 0)" : "translate(2, 0)"}
       >
