@@ -8,7 +8,10 @@ interface SearchBarProps {
   onSearch: (query: string) => void;
 }
 
-const SearchBar: FC<SearchBarProps> = ({ onSearch, variant }) => {
+export const SearchBar: FC<SearchBarProps> = ({
+  onSearch,
+  variant = "default",
+}) => {
   const [inputValue, setInputValue] = useState("");
   const inputRef = createRef<HTMLInputElement>();
 
@@ -25,6 +28,8 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch, variant }) => {
 
   return (
     <form
+      role="search"
+      data-testid="search-form"
       onClick={() => {
         inputRef.current?.focus();
       }}
@@ -38,10 +43,10 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch, variant }) => {
             : "search__container search__container--default"
         }
       >
-        {variant === "small" ? (
-          <SearchIconSmall className="search__icon" />
+        {variant === "default" ? (
+          <SearchIcon data-testid="search-icon" />
         ) : (
-          <SearchIcon className="search__icon" />
+          <SearchIconSmall data-testid="search-icon-small" />
         )}
 
         <input
@@ -61,5 +66,3 @@ const SearchBar: FC<SearchBarProps> = ({ onSearch, variant }) => {
     </form>
   );
 };
-
-export default SearchBar;
