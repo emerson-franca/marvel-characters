@@ -1,7 +1,6 @@
-import { Card, Footer, Pagination, Toggle } from "../../components";
+import { Card, Footer, Pagination, Toggle, SearchBar } from "../../components";
 import Logo from "../../assets/logo.svg";
 import "./Home.css";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import { useMarvelCharacters, useFavorites } from "../../hooks/";
 import { useState } from "react";
 import { ReactComponent as FavoriteOn } from "../../assets/favorito_01.svg";
@@ -44,7 +43,7 @@ export const Home = () => {
         </p>
       </header>
 
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} variant="default" />
 
       <main className="home__content">
         <section className="home__content__info">
@@ -101,7 +100,7 @@ export const Home = () => {
               {filteredCharacters.map((character) => (
                 <Card
                   key={character.id}
-                  {...character}
+                  character={character}
                   favorite={isFavorite(character.id)}
                 />
               ))}
