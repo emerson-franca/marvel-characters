@@ -1,4 +1,5 @@
 import { Card, Footer, Pagination, Toggle, SearchBar } from "../../components";
+import Logo from "../../assets/logo.svg";
 import "./Home.css";
 import { useMarvelCharacters, useFavorites } from "../../hooks/";
 import { useState } from "react";
@@ -38,6 +39,7 @@ export const Home = () => {
   return (
     <div className="home">
       <header className="home__header">
+        <img src={Logo} alt="Marvel logo" />
         <h1>EXPLORE O UNIVERSO</h1>
         <h5>
           Mergulhe no domínio deslumbrante de todos os personagens clássicos que
