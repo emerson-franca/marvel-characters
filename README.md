@@ -1,46 +1,92 @@
-# Getting Started with Create React App
+# Marvel Character Explore 🦸‍♂️
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Uma aplicação React para explorar personagens e seus quadrinhos.
 
-## Available Scripts
+## 🚀 Início Rápido
 
-In the project directory, you can run:
+### Pré-requisitos
 
-### `npm start`
+- Node.js (v14 ou superior)
+- Yarn ou npm
+- Credenciais da API Marvel (veja `.env.example`)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Instalação
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Clone o repositório:
 
-### `npm test`
+```bash
+git clone <https://github.com/emerson-franca/marvel-characters.git>
+cd marvel
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Instale as dependências:
 
-### `npm run build`
+```bash
+yarn install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Copie o arquivo de ambiente e preencha suas credenciais da API Marvel:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+cp .env.example .env
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Inicie o servidor de desenvolvimento:
 
-### `npm run eject`
+```bash
+yarn start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+A aplicação estará disponível em [http://localhost:3000](http://localhost:3000).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🧪 Testes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Testes Unitários
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Execute os testes unitários com Jest:
 
-## Learn More
+```bash
+yarn test
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Para executar os testes em modo de observação:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+yarn test:watch
+```
+
+### Testes End-to-End
+
+Utilizamos Cypress para testes E2E. Para executar os testes:
+
+1. Inicie o servidor de desenvolvimento:
+
+```bash
+yarn start
+```
+
+2. Em um novo terminal, execute os testes Cypress:
+
+```bash
+# Executar testes em modo headless
+yarn cypress:run
+
+# Abrir o Test Runner do Cypress
+yarn cypress:open
+```
+
+## 🛠️ Scripts Disponíveis
+
+- `yarn start` - Executa a aplicação em modo de desenvolvimento
+- `yarn build` - Compila a aplicação para produção
+- `yarn test` - Executa os testes unitários
+- `yarn cypress:open` - Abre o Test Runner do Cypress
+- `yarn cypress:run` - Executa os testes Cypress em modo headless
+
+## 📦 Construído Com
+
+- React
+- TypeScript
+- Jest
+- Cypress
+- API Marvel
