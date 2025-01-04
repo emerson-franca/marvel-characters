@@ -90,3 +90,11 @@ yarn cypress:open
 - Jest
 - Cypress
 - API Marvel
+
+## 📝 Informações adicionais
+
+- Utilizado ReactQuery para cache das chamadas de Api
+- Custom Hooks para melhor organização
+- Pré commit para garantir que os testes rodem antes de subir qualquer código
+- Deploy automático ao subir código para branch main
+- Optei por não adicionar a SearchBar na página de character ( visto que não era um requisito listado) para não atrapalhar o cache
