@@ -55,13 +55,12 @@ describe("Card Component", () => {
     return render(<BrowserRouter>{component}</BrowserRouter>);
   };
 
-  it("renders the card with correct content", () => {
+  it("renders the card with correct background content", () => {
     renderWithRouter(<Card character={character} favorite={false} />);
 
-    expect(screen.getByText("Spider-Man")).toBeInTheDocument();
-    expect(screen.getByAltText("Spider-Man")).toHaveAttribute(
-      "src",
-      "spiderman.jpg"
+    const img = screen.getByRole("img");
+    expect(img).toHaveStyle(
+      `background-image: url(${character.thumbnail.path}.${character.thumbnail.extension})`
     );
     expect(screen.getByTestId("favorite-off")).toBeInTheDocument();
   });
