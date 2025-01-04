@@ -1,21 +1,16 @@
-import { fetchCharacterById } from "../api/character";
-import { useQuery } from "@tanstack/react-query";
+import { queryClient } from "../config/ReactQuery";
+import { Character } from "../types/character";
 
 export const useCharacterDetails = (id: string) => {
-  const {
-    data: character,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["character", id],
-    queryFn: async () => fetchCharacterById(id!),
-  });
+  const charactersState = queryClient
+    .getQueryCache()
+    .findAll({ queryKey: ["characters"] });
+
+  const character = charactersState
+    .flatMap((query) => query.state.data as Character[])
+    .find((char): char is Character => char.id === +id);
 
   return {
     character,
-    isLoading,
-    isError,
-    error,
   };
 };
