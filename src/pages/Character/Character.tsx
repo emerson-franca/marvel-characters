@@ -15,8 +15,45 @@ import { Footer } from "../../components";
 export const Character = () => {
   const { id } = useParams<{ id: string }>();
   const { isFavorite, toggleFavorite } = useFavorites();
-  const { character } = useCharacterDetails(id!);
+  const { character, isError, isLoading, error } = useCharacterDetails(id!);
   const { comics, isLoading: isLoadingComics } = useCharacterComics(id!);
+
+  if (isLoading) {
+    return (
+      <div className="character">
+        <header className="character__header">
+          <div>
+            <Link to="/">
+              <img src={Logo} alt="Marvel logo" />
+            </Link>
+          </div>
+        </header>
+        <main className="character__content">
+          <div className="character__loading">
+            <span className="loading" />
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="character">
+        <header className="character__header">
+          <div>
+            <Link to="/">
+              <img src={Logo} alt="Marvel logo" />
+            </Link>
+          </div>
+        </header>
+        <main className="character__content">
+          <h1>Erro ao buscar personagem</h1>
+          <p>{error?.message}</p>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="character">

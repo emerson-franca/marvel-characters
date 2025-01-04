@@ -25,6 +25,14 @@
   gap: 1rem;
 }
 
+.character__loading {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .character__content {
   display: flex;
   flex-direction: column;
