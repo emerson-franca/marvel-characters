@@ -15,9 +15,13 @@
   font-size: 2em;
   font-weight: bold;
   margin: 0;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 }
 
-.home__header h6 {
+.home__header h5 {
   font-weight: bold;
   color: var(--text-secondary);
   margin: 0;

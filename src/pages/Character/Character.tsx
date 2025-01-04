@@ -15,31 +15,18 @@ import { Footer } from "../../components";
 export const Character = () => {
   const { id } = useParams<{ id: string }>();
   const { isFavorite, toggleFavorite } = useFavorites();
-  const { character, isError, isLoading } = useCharacterDetails(id!);
+  const { character } = useCharacterDetails(id!);
   const { comics, isLoading: isLoadingComics } = useCharacterComics(id!);
-
-  if (isLoading) {
-    return (
-      <div className="wrapper" role="status">
-        <span className="loading" />
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <section className="wrapper" role="alert">
-        Erro ao buscar personagem
-      </section>
-    );
-  }
 
   return (
     <div className="character">
       <header className="character__header">
-        <Link to="/">
-          <img src={Logo} alt="Marvel logo" />
-        </Link>
+        <div>
+          <Link to="/">
+            <img src={Logo} alt="Marvel logo" />
+          </Link>
+          {/* <SearchBar variant="small" onSearch={() => {}} /> */}
+        </div>
       </header>
 
       <main className="character__content">
@@ -48,7 +35,7 @@ export const Character = () => {
             <div className="character__content__wrapper">
               <article className="character__details">
                 <header className="character__infos__header">
-                  <div className="flex">
+                  <div className="character__infos__header__wrapper">
                     <h1>{character.name}</h1>
                     <button
                       className="character__infos__favorite"

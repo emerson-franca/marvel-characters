@@ -27,11 +27,18 @@ export const Card: FC<CardProps> = ({ character, favorite }) => {
 
   return (
     <div className="card" onClick={handleCardClick}>
-      <img
-        className="card__image"
-        src={`${thumbnail.path}.${thumbnail.extension}`}
-        alt={name}
-      />
+      <div
+        className="card__overlay"
+        style={{
+          backgroundImage: `url(${thumbnail.path}.${thumbnail.extension})`,
+        }}
+      >
+        {/* <img
+          className="card__image"
+          src={`${thumbnail.path}.${thumbnail.extension}`}
+          alt={name}
+        /> */}
+      </div>
       <div className="card__content">
         <h1 className="card__title">{name}</h1>
         <button

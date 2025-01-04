@@ -2,6 +2,12 @@
   cursor: pointer;
 }
 
+.card__overlay {
+  height: 240px;
+  backgroundposition: center;
+  background-size: cover;
+}
+
 .card__title {
   font-size: 1em;
   font-weight: bold;
