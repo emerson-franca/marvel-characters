@@ -6,6 +6,10 @@
   height: 240px;
   backgroundposition: center;
   background-size: cover;
+
+  @media (max-width: 550px) {
+    height: 320px;
+  }
 }
 
 .card__title {
