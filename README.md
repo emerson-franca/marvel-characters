@@ -15,7 +15,7 @@ Uma aplicação React para explorar personagens e seus quadrinhos.
 1. Clone o repositório:
 
 ```bash
-git clone <https://github.com/emerson-franca/marvel-characters.git>
+git clone https://github.com/emerson-franca/marvel-characters.git
 cd marvel
 ```
 
