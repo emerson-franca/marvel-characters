@@ -97,4 +97,4 @@ yarn cypress:open
 - Custom Hooks para melhor organização
 - Pré commit para garantir que os testes rodem antes de subir qualquer código
 - Deploy automático ao subir código para branch main
-- Optei por não adicionar a SearchBar na página de character ( visto que não era um requisito listado) para não atrapalhar o cache
+- Optei por não adicionar a SearchBar na página de character para não atrapalhar o cache
